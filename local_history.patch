@@ -1,0 +1,54 @@
+Index: app/src/main/java/com/example/myapplication/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/myapplication/MainActivity.java b/app/src/main/java/com/example/myapplication/MainActivity.java
+--- a/app/src/main/java/com/example/myapplication/MainActivity.java	
++++ b/app/src/main/java/com/example/myapplication/MainActivity.java	(date 1653060776843)
+@@ -10,15 +10,21 @@
+ import android.content.pm.PackageManager;
+ import android.os.Build;
+ import android.os.Bundle;
++import android.telephony.CellInfoGsm;
++import android.telephony.CellSignalStrengthGsm;
++import android.telephony.NeighboringCellInfo;
+ import android.telephony.TelephonyManager;
+ import android.telephony.TelephonyScanManager;
+ import android.telephony.gsm.GsmCellLocation;
+ import android.widget.Toast;
+ 
++import java.util.List;
++
+ public class MainActivity extends AppCompatActivity {
+ 
+     private static final int LOCATION_PERMISSION = 100;
+     private TelephonyManager tpm = null;
++    private TelephonyScanManager tcm = null;
+     private GsmCellLocation cellLocation = null;
+ 
+     @RequiresApi(api = Build.VERSION_CODES.P)
+@@ -29,7 +35,8 @@
+ 
+         checkPermission(Manifest.permission.ACCESS_FINE_LOCATION, LOCATION_PERMISSION);
+         checkPermission(Manifest.permission.READ_PHONE_STATE, LOCATION_PERMISSION);
+-        //checkPermission(Manifest.permission.INTERNET, LOCATION_PERMISSION);
++
++
+     }
+ 
+     // Function to check and request permission.
+@@ -81,13 +88,6 @@
+         System.out.println(cellLocation.getLac());
+         System.out.println(cellLocation.getPsc());
+         System.out.println(tpm.getNetworkCountryIso());
+-
+-        System.out.println("---Ubicación exacta---");
+-
+-        //LocationApi locationCliente = new LocationApi("pk.148fa75e6fa9abc41c49cfbe12c2119d", tpm.getNetworkOperator(), tpm.getNetworkType(),
+-                //cellLocation.getLac(), cellLocation.getCid());
+-        //System.out.println(locationCliente.getResponse());
+-
+     }
+ 
+     @Override
